@@ -1,41 +1,95 @@
 #include "monty.h"
 
 /**
- * open_file - A function that opens a given file if possible.
- *
- * @filename: The file to open.
- *
- * Return: The file.
-*/
+  * open_file - Opens a file to interpret the commands within
+  * @filename: The file to be opened
+  *
+  * Return: The file descriptor of the opened file
+  */
 FILE *open_file(char *filename)
 {
-    FILE *fd = NULL;
+	FILE *fd = NULL;
 
-    access_rights(filename);
-    fd = fopen(filename, "r");
+	check_access_rights(filename);
 
-    if (!fd)
-    {
-        fprintf(stderr, "Error: Can't open file %s\n", filename);
-        exit(EXIT_FAILURE);
-    }
+	fd = fopen(filename, "r");
 
-    return (fd);
-}
-
-/**
- * access_rights - A function that checks if the user has permission to open
- *                 the file.
- *
- * @filename: The filename.
- *
- * Return: Nothing.
-*/
-void access_rights(char *filename)
-{
-    if (access(filename, R_OK) == -1)
+	if (!fd)
 	{
 		fprintf(stderr, "Error: Can't open file %s\n", filename);
 		exit(EXIT_FAILURE);
 	}
+
+	return (fd);
+}
+
+/**
+  * check_args_num - Check the arguments passed on to the interpreter
+  * @argn: Number of args
+  *
+  * Return: Nothing
+  */
+void check_args_num(int argn)
+{
+	if (argn != MIN_ARGS)
+		handle_error(ERR_ARG_USG, NULL, 0, NULL);
+}
+
+/**
+  * check_access_rights - CChecks if the user has permissions to read the file
+  * @filename: The pathname of the file
+  *
+  * Return: Nothing
+  */
+void check_access_rights(char *filename)
+{
+	if (access(filename, R_OK) == -1)
+	{
+		fprintf(stderr, "Error: Can't open file %s\n", filename);
+		exit(EXIT_FAILURE);
+	}
+}
+
+/**
+  * check_push_param - Check the parameter of the push instruction
+  * @param: The parameter to be verified
+  *
+  * Return: 0 if is a valid param or errcode if is invalid
+  */
+int check_push_param(char *param)
+{
+	if (param == NULL || check_digits(param) == 0)
+		return (ERR_PUSH_USG);
+
+	return (VALID_PARM);
+}
+
+/**
+  * check_digits - Checks if all characters in a string are digits
+  * @s: The string to be evaluated
+  *
+  * Return: 1 if all if all evaluated characters are digits or 0 if not
+  */
+int check_digits(char *s)
+{
+	int status = 1;
+
+	while (*s != '\0')
+	{
+		if (s[0] == 45)
+		{
+			++s;
+			continue;
+		}
+
+		if (isdigit(*s) == 0)
+		{
+			status = 0;
+			return (status);
+		}
+
+		++s;
+	}
+
+	return (status);
 }

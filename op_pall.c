@@ -1,25 +1,25 @@
 #include "monty.h"
 
 /**
- * op_pall - A function that prints the dlistint and returns
- *                  the length of the list.
+ * op_pall - Prints all the values on the stack,
+ * starting from the top of the stack.
+ * @stack: The head of the stack
+ * @line_number: The line on which the error occurred
  *
- * @stack: The head of the stack.
- *
- * Return: Nothing.
-*/
-void op_pall(const stack_t **stack, unsigned int line_number)
+ * Return: Nothing
+ */
+void op_pall(stack_t **stack, unsigned int line_number)
 {
-	stack_t *temp = NULL;
+	stack_t *current = NULL;
 	(void) line_number;
 
 	if (*stack)
 	{
-		temp = *stack;
-		while (temp != NULL)
+		current = *stack;
+		while (current != NULL)
 		{
-			printf("%d\n", temp->n);
-			temp = temp->next;
+			printf("%d\n", current->n);
+			current = current->next;
 		}
 	}
 }

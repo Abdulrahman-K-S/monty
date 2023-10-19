@@ -11,8 +11,8 @@
 void (*pick_execute(char *s))(stack_t **, unsigned int)
 {
     instruction_t instruction[] = {
-        { "push", op_push_start },
-        { "push_queue", op_push_end },
+        { "push", op_push },
+        { "push_queue", op_push_queue },
         { "pall", op_pall },
         { "pint", op_pint },
         { "pop", op_pop },

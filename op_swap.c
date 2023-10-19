@@ -1,25 +1,25 @@
 #include "monty.h"
 
 /**
- * op_swap - A function that swaps the top 2 elements together.
+ * op_swap - Swaps the top two elements of the stack
+ * @stack: The head of the stack
+ * @line_number: The line on which the error occurred
  *
- * @stack: The head of the stack.
- * 
- * Return: Nothing.
-*/
+ * Return: Nothing
+ */
 void op_swap(stack_t **stack, unsigned int line_number)
 {
-    unsigned int temp = 0, length = 0;
+	unsigned int length = 0, temp = 0;
 
-    length = count_stack(*stack);
-    if (length < 2)
-        handle_error(SWAP_ERR, NULL, line_number, NULL);
+	length = count_stack(*stack);
 
-    if ((*stack)->next != NULL)
-    {
-        temp = (*stack)->n;
-        (*stack)->n = (*stack)->next->n;
-        (*stack)->next->n = temp;
-        return;
-    }
+	if (length < 2)
+		handle_error(ERR_SWAP_USG, NULL, line_number, NULL);
+
+	if (*stack)
+	{
+		temp = (*stack)->n;
+		(*stack)->n = (*stack)->next->n;
+		(*stack)->next->n = temp;
+	}
 }

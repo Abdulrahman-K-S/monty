@@ -1,6 +1,6 @@
 #include "monty.h"
 
-stack_t *stack = NULL;
+stack_t *head = NULL;
 
 /**
   * main - The Monty Interpreter entry point

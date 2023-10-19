@@ -1,18 +1,18 @@
 #include "monty.h"
 
 /**
-  * op_pop - Remove the first node of a doubly linked list
-  *
-  * @stack: The head of the doubly linked list
-  *
-  * Return: Nothing
-*/
+ * op_pop - Removes the top element of the stack
+ * @stack: The head of the stack
+ * @line_number: The line on which the error occurred
+ *
+ * Return: Nothing
+ */
 void op_pop(stack_t **stack, unsigned int line_number)
 {
 	stack_t *current = *stack, *temp = NULL;
 
 	if (*stack == NULL)
-		handle_error(POP_ERR, NULL, line_number, NULL);
+		handle_error(ERR_POP_USG, NULL, line_number, NULL);
 
 	temp = current;
 	if (current->next)

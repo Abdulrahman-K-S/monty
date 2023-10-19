@@ -1,25 +1,26 @@
 #include "monty.h"
 
 /**
- * op_sub - A function that subtracts the top two elements.
+ * op_sub - Subtracts the top element of the stack
+ * from the second top element of the stack
+ * @stack: The head of the stack
+ * @line_number: The line on which the error occurred
  *
- * @stack: The head of the stack.
- *
- * Return: Nothing.
-*/
+ * Return: Nothing
+ */
 void op_sub(stack_t **stack, unsigned int line_number)
 {
-    unsigned int temp = 0, length = 0;
+	stack_t *temp = *stack;
+	unsigned int a = 0, b = 0, length = 0;
 
-    length = count_stack(*stack);
-    if (length < 2)
-        handle_error(SUB_ERR, NULL, line_number, NULL);
+	length = count_stack(*stack);
 
-    if ((*stack)->next != NULL)
-    {
-        temp = (*stack)->next->n - (*stack)->n;
-        (*stack)->next->n = temp;
-        op_pop(stack, line_number);
-        return;
-    }
+	if (length < 2)
+		handle_error(ERR_SUB_USG, NULL, line_number, NULL);
+
+	a = temp->n;
+	b = temp->next->n;
+	temp->next->n = b - a;
+	*stack = temp->next;
+	free(temp);
 }
