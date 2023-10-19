@@ -20,10 +20,12 @@
 #define PCHAR_ERR_USAGE 211 /*L%d: can't pchar, value out of range\n*/
 #define PCHAR_ERR 212 /*L%d: can't mod, stack too short\n*/
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include <ctype.h>
 #include <fcntl.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+#include <unistd.h>
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
