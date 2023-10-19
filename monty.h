@@ -1,6 +1,9 @@
 #ifndef MONTY_H
 #define MONTY_H
 
+#define USING_STACK 300
+#define USING_QUEUE 301
+
 /* Common errors */
 #define UNKNOWN_INSTRUCTION 100 /*L%d: unknown instruction %s\n*/
 #define BAD_MALLOC 101 /*Error: malloc failed\n*/
