@@ -19,7 +19,7 @@ void op_mul(stack_t **stack, unsigned int line_number)
     {
         temp = (*stack)->next->n * (*stack)->n;
         (*stack)->next->n = temp;
-        op_pop(stack);
+        op_pop(stack, line_number);
         return;
     }
 }
