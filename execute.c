@@ -56,9 +56,9 @@ int handle_execution(char *op_code, char *op_param, unsigned int line, int m)
 	void (*oprt)(stack_t **, unsigned int);
 
 	if (strcmp(op_code, "stack") == 0)
-		return (USING_STACK);
+		return (METH_STACK);
 	else if (strcmp(op_code, "queue") == 0)
-		return (USING_QUEUE);
+		return (METH_QUEUE);
 
 	oprt = pick_func(op_code);
 	if (oprt)
@@ -66,21 +66,21 @@ int handle_execution(char *op_code, char *op_param, unsigned int line, int m)
 		if (strcmp(op_code, "push") == 0)
 		{
 			status_op = check_push_param(op_param);
-			if (status_op == PUSH_ERR)
-				return (PUSH_ERR);
+			if (status_op == ERR_PUSH_USG)
+				return (ERR_PUSH_USG);
 
-			if (m != 0 && m == USING_QUEUE)
+			if (m != 0 && m == METH_QUEUE)
 				oprt = pick_func("push_queue");
 
-			oprt(&stack, atoi(op_param));
+			oprt(&head, atoi(op_param));
 		}
 		else
 		{
-			oprt(&stack, line);
+			oprt(&head, line);
 		}
 
 		return (m);
 	}
 
-	return (UNKNOWN_INSTRUCTION);
+	return (ERR_BAD_INST);
 }

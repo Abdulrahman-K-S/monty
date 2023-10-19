@@ -9,24 +9,24 @@
 #define METH_QUEUE		301
 
 /* Common Errors */
-#define UNKNOWN_INSTRUCTION	100
-#define BAD_MALLOC	101
-#define USAGE_ERR	102
+#define ERR_BAD_INST	100
+#define ERR_BAD_MALL	101
+#define ERR_INVLD_PARM	102
 
 /* Usage Errors */
 #define ERR_ARG_USG		200
-#define PUSH_ERR	201
-#define PINT_ERR	202
-#define POP_ERR		203
-#define SWAP_ERR	204
-#define ADD_ERR		205
-#define SUB_ERR		206
-#define DIV_ERR		207
-#define DIV_ERR_ZERO		208
-#define MUL_ERR		209
-#define MOD_ERR		210
-#define PCHAR_ERR_USAGE		211
-#define PCHAR_ERR		212
+#define ERR_PUSH_USG	201
+#define ERR_PINT_USG	202
+#define ERR_POP_USG		203
+#define ERR_SWAP_USG	204
+#define ERR_ADD_USG		205
+#define ERR_SUB_USG		206
+#define ERR_DIV_USG		207
+#define ERR_DIV_ZRO		208
+#define ERR_MUL_USG		209
+#define ERR_MOD_USG		210
+#define ERR_PCH_USG		211
+#define ERR_PCH_EMP		212
 
 #include <ctype.h>
 #include <fcntl.h>
@@ -78,10 +78,10 @@ void frees_stack(void);
 unsigned int count_stack(stack_t *stack);
 
 /* Error handlers */
-void handle_error(int errno, char *opcode, unsigned int line, char *buff);
-void handle_cerror(int errno, char *opcode, unsigned int line);
-void handle_uerror(int errno, unsigned int line);
-void handle_more_uerror(int errno, unsigned int line);
+void handle_error(int errorno, char *opcode, unsigned int line, char *buff);
+void handle_cerror(int errorno, char *opcode, unsigned int line);
+void handle_uerror(int errorno, unsigned int line);
+void handle_more_uerror(int errorno, unsigned int line);
 
 /* Execution functions */
 int handle_execution(char *op_code, char *op_param, unsigned int line, int m);
@@ -97,7 +97,7 @@ void op_swap(stack_t **stack, unsigned int line_number);
 void op_add(stack_t **stack, unsigned int line_number);
 void op_nop(stack_t **stack, unsigned int line_number);
 void op_sub(stack_t **stack, unsigned int line_number);
-void op_divide(stack_t **stack, unsigned int line_number);
+void op_div(stack_t **stack, unsigned int line_number);
 void op_mul(stack_t **stack, unsigned int line_number);
 void op_mod(stack_t **stack, unsigned int line_number);
 void op_pchar(stack_t **stack, unsigned int line_number);
