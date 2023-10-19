@@ -2,21 +2,21 @@
 
 /**
   * handle_error - Manages the printing of interpreter errors
-  * @errorno: The error code to manage
+  * @errno: The error code to manage
   * @opcode: The operation code to manage
   * @line: The line on which the error occurred
   * @buff: The reserved error line buffer
   *
   * Return: Nothing
   */
-void handle_error(int errorno, char *opcode, unsigned int line, char *buff)
+void handle_error(int errno, char *opcode, unsigned int line, char *buff)
 {
-	if (errorno >= 100 && errorno < 200)
-		handle_cerror(errorno, opcode, line);
-	else if (errorno >= 200 && errorno <= 210)
-		handle_uerror(errorno, line);
-	else if (errorno >= 211 && errorno <= 220)
-		handle_more_uerror(errorno, line);
+	if (errno >= 100 && errno < 200)
+		handle_cerror(errno, opcode, line);
+	else if (errno >= 200 && errno <= 210)
+		handle_uerror(errno, line);
+	else if (errno >= 211 && errno <= 220)
+		handle_more_uerror(errno, line);
 	else
 		return;
 
@@ -30,15 +30,15 @@ void handle_error(int errorno, char *opcode, unsigned int line, char *buff)
 
 /**
   * handle_cerror - Manages common interpreter errors
-  * @errorno: The error code to manage
+  * @errno: The error code to manage
   * @opcode: The operation code to manage
   * @line: The line on which the error occurred
   *
   * Return: Nothing
   */
-void handle_cerror(int errorno, char *opcode, unsigned int line)
+void handle_cerror(int errno, char *opcode, unsigned int line)
 {
-	switch (errorno)
+	switch (errno)
 	{
 		case ERR_BAD_INST:
 			fprintf(stderr, "L%d: unknown instruction %s\n", line, opcode);
@@ -58,9 +58,9 @@ void handle_cerror(int errorno, char *opcode, unsigned int line)
   *
   * Return: Nothing
   */
-void handle_uerror(int errorno, unsigned int line)
+void handle_uerror(int errno, unsigned int line)
 {
-	switch (errorno)
+	switch (errno)
 	{
 		case ERR_ARG_USG:
 			fprintf(stderr, "USAGE: monty file\n");
@@ -102,14 +102,14 @@ void handle_uerror(int errorno, unsigned int line)
 
 /**
   * handle_more_uerror - Manages interpreter usage errors
-  * @errorno: The error code to manage
+  * @errno: The error code to manage
   * @line: The line on which the error occurred
   *
   * Return: Nothing
   */
-void handle_more_uerror(int errorno, unsigned int line)
+void handle_more_uerror(int errno, unsigned int line)
 {
-	switch (errorno)
+	switch (errno)
 	{
 		case ERR_PCH_USG:
 			fprintf(stderr, "L%d: can't pchar, value out of range\n", line);

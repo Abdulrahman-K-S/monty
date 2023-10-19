@@ -72,37 +72,29 @@ FILE *open_file(char *filename);
 void check_access_rights(char *filename);
 int check_push_param(char *param);
 int check_digits(char *s);
-
-/* Stack utilities */
 void frees_stack(void);
-unsigned int count_stack(stack_t *stack);
-
-/* Error handlers */
-void handle_error(int errorno, char *opcode, unsigned int line, char *buff);
-void handle_cerror(int errorno, char *opcode, unsigned int line);
-void handle_uerror(int errorno, unsigned int line);
-void handle_more_uerror(int errorno, unsigned int line);
-
-/* Execution functions */
 int handle_execution(char *op_code, char *op_param, unsigned int line, int m);
+void handle_error(int errno, char *opcode, unsigned int line, char *buff);
+void handle_cerror(int errno, char *opcode, unsigned int line);
+void handle_uerror(int errno, unsigned int line);
+void handle_more_uerror(int errno, unsigned int line);
 void (*pick_func(char *s))(stack_t **, unsigned int);
-
-/* op_codes Functions */
-void op_push(stack_t **stack, unsigned int param);
-void op_push_queue(stack_t **stack, unsigned int param);
-void op_pall(stack_t **stack, unsigned int line_number);
-void op_pint(stack_t **stack, unsigned int line_number);
-void op_pop(stack_t **stack, unsigned int line_number);
-void op_swap(stack_t **stack, unsigned int line_number);
-void op_add(stack_t **stack, unsigned int line_number);
-void op_nop(stack_t **stack, unsigned int line_number);
-void op_sub(stack_t **stack, unsigned int line_number);
-void op_div(stack_t **stack, unsigned int line_number);
-void op_mul(stack_t **stack, unsigned int line_number);
-void op_mod(stack_t **stack, unsigned int line_number);
-void op_pchar(stack_t **stack, unsigned int line_number);
-void op_pstr(stack_t **stack, unsigned int line_number);
-void op_rotl(stack_t **stack, unsigned int line_number);
-void op_rotr(stack_t **stack, unsigned int line_number);
+unsigned int count_stack(stack_t *stack);
+void push(stack_t **stack, unsigned int param);
+void push_queue(stack_t **stack, unsigned int param);
+void pall(stack_t **stack, unsigned int line_number);
+void pint(stack_t **stack, unsigned int line_number);
+void pop(stack_t **stack, unsigned int line_number);
+void swap(stack_t **stack, unsigned int line_number);
+void add(stack_t **stack, unsigned int line_number);
+void nop(stack_t **stack, unsigned int line_number);
+void sub(stack_t **stack, unsigned int line_number);
+void divide(stack_t **stack, unsigned int line_number);
+void mul(stack_t **stack, unsigned int line_number);
+void mod(stack_t **stack, unsigned int line_number);
+void pchar(stack_t **stack, unsigned int line_number);
+void pstr(stack_t **stack, unsigned int line_number);
+void rotl(stack_t **stack, unsigned int line_number);
+void rotr(stack_t **stack, unsigned int line_number);
 
 #endif

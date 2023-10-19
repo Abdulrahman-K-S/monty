@@ -1,14 +1,14 @@
 #include "monty.h"
 
 /**
- * op_mul - Multiplies the second top element of the stack
+ * mul - Multiplies the second top element of the stack
  * with the top element of the stack
  * @stack: The head of the stack
  * @line_number: The line on which the error occurred
  *
  * Return: Nothing
  */
-void op_mul(stack_t **stack, unsigned int line_number)
+void mul(stack_t **stack, unsigned int line_number)
 {
 	stack_t *temp = *stack;
 	unsigned int a = 0, b = 0, length = 0;
