@@ -1,14 +1,14 @@
 #include "monty.h"
 
 /**
- * sub - Subtracts the top element of the stack
+ * op_sub - Subtracts the top element of the stack
  * from the second top element of the stack
  * @stack: The head of the stack
  * @line_number: The line on which the error occurred
  *
  * Return: Nothing
  */
-void sub(stack_t **stack, unsigned int line_number)
+void op_sub(stack_t **stack, unsigned int line_number)
 {
 	stack_t *temp = *stack;
 	unsigned int a = 0, b = 0, length = 0;

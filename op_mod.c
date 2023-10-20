@@ -1,14 +1,14 @@
 #include "monty.h"
 
 /**
- * mod - Computes the rest of the division of the second top element
+ * op_mod - Computes the rest of the division of the second top element
  * of the stack by the top element of the stack
  * @stack: The head of the stack
  * @line_number: The line on which the error occurred
  *
  * Return: Nothing
  */
-void mod(stack_t **stack, unsigned int line_number)
+void op_mod(stack_t **stack, unsigned int line_number)
 {
 	stack_t *temp = *stack;
 	unsigned int a = 0, b = 0, length = 0;
