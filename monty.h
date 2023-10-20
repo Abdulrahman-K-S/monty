@@ -67,19 +67,27 @@ typedef struct instruction_s
 
 extern stack_t *head;
 
+/* Stack utilites */
+unsigned int count_stack(stack_t *stack);
+void frees_stack(void);
+
 void check_args_num(int argn);
 FILE *open_file(char *filename);
 void check_access_rights(char *filename);
 int check_push_param(char *param);
 int check_digits(char *s);
-void frees_stack(void);
+
+/* Execute functions */
 int handle_execution(char *op_code, char *op_param, unsigned int line, int m);
+void (*execute_func(char *s))(stack_t **, unsigned int);
+
+/* Handle errors */
 void handle_error(int errno, char *opcode, unsigned int line, char *buff);
 void handle_cerror(int errno, char *opcode, unsigned int line);
 void handle_uerror(int errno, unsigned int line);
 void handle_more_uerror(int errno, unsigned int line);
-void (*pick_func(char *s))(stack_t **, unsigned int);
-unsigned int count_stack(stack_t *stack);
+
+/* op code functions */
 void op_push(stack_t **stack, unsigned int param);
 void op_push_queue(stack_t **stack, unsigned int param);
 void op_pall(stack_t **stack, unsigned int line_number);

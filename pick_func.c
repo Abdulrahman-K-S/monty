@@ -1,13 +1,13 @@
 #include "monty.h"
 
 /**
-  * pick_func - Select the function that relates to the Monty instruction
+  * execute_func - Select the function that relates to the Monty instruction
   * @s: The instruction to be executed
   *
   * Return: A pointer to the function to be executed or
   * NULL if the function don't exists
   */
-void (*pick_func(char *s))(stack_t **, unsigned int)
+void (*execute_func(char *s))(stack_t **, unsigned int)
 {
 	instruction_t insts[] = {
 		{ "push", op_push },
